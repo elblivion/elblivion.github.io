@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>elblivion.github.io</title>
-    <link>http://elblivion.github.io/</link>
-    <description>Recent content on elblivion.github.io</description>
+    <title>Posts on elblivion.github.io</title>
+    <link>http://elblivion.github.io/post/</link>
+    <description>Recent content in Posts on elblivion.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
     <lastBuildDate>Sat, 13 Feb 2016 22:55:14 +0100</lastBuildDate>
-    <atom:link href="http://elblivion.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://elblivion.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Adventures in User-Data</title>
@@ -45,20 +45,6 @@
 &lt;p&gt;&lt;code&gt;sns_region&lt;/code&gt; and &lt;code&gt;sns_topic&lt;/code&gt; are template variables, since this User-Data script is templated by &lt;a href=&#34;https://www.terraform.io/&#34;&gt;Terraform&lt;/a&gt;, but that&amp;rsquo;s a subject for another post. :-)&lt;/p&gt;
 
 &lt;p&gt;And so - hopefully - disaster is averted!&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>About Me</title>
-      <link>http://elblivion.github.io/about/</link>
-      <pubDate>Thu, 11 Feb 2016 15:25:01 +0100</pubDate>
-      
-      <guid>http://elblivion.github.io/about/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve been working in various roles in Internet-related companies since 1999.&lt;/p&gt;
-
-&lt;p&gt;Currently I am handling infrastructure and web operations at &lt;a href=&#34;https://www.contentful.com&#34;&gt;Contentful&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;I also occasionally &lt;a href=&#34;https://twitter.com/elblivion&#34;&gt;tweet&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
