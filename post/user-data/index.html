@@ -79,9 +79,9 @@
 
 <p>One of my first tasks at my current employer was to automate bootstrapping of our AWS EC2 instances: to get them in a state where Chef could run on them without having to do any manual fiddling after launch.</p>
 
-<p>To achieve this two things were needed, both requiring a lot of trial and error: an <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html">IAM instance profile</a> to let EC2 instances access other AWS resources without having to distribute API keys, and a <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts">User-Data script</a>, which is a shell script that is run automatically on boot to set up.</p>
+<p>To achieve this two things were needed, both requiring a lot of trial and error: an <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html">IAM instance profile</a> to let EC2 instances access other AWS resources without having to distribute API keys, and a <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts">User-Data script</a>, which is a shell script that is run automatically on boot to set up. This is part of <a href="http://cloudinit.readthedocs.org/en/latest/index.html">Cloud-init</a>, a standard for early initialisation of cloud instances.</p>
 
-<p>Generally the less you do in these scripts the better, because they are a royal pain to debug. These days most of our set-up has been farmed out to <a href="https://www.packer.io/">Packer</a>, which can build a custom AMI server image based on a stock Linux image on which it runs our set-up commands, install the versions of Ruby and Chef we want, and so on.</p>
+<p>Generally the less you do in these scripts the better, because they are a royal pain to debug. (Hint: it involves creating and destroying a lot of test instances.) These days most of our set-up has been farmed out to <a href="https://www.packer.io/">Packer</a>, which can build a custom AMI server image based on a stock Linux image on which it runs our set-up commands, install the versions of Ruby and Chef we want, and so on. This means the instances boot faster and that the User-Data script has less things to do.</p>
 
 <p>Our custom AMIs include tools like the <a href="https://stedolan.github.io/jq/">jq</a> command-line JSON processor, which we can use to process the output of <a href="https://github.com/hungryblank/gofog">goFog</a>, Contentful CTO Paolo&rsquo;s Go tool for basic interactions with the AWS API. Currently it supports reading information about EC2 instances, including their tags, which we use for environment discovery, and also publishing to SNS topics. Also being a Go program it&rsquo;s distributed as a statically-linked binary which from a deployment and operations point of view is great.</p>
 
@@ -92,18 +92,18 @@
 <script src="https://gist.github.com/2b4cffc483285253197b.js"></script>
 
 
-<h2 id="but-can-all-go-south-what-then:22895e17efbac64b92cbb4351d6c7861">But can all go south. What then?</h2>
+<h2 id="but-instance-bootstrapping-can-still-fail-what-then:22895e17efbac64b92cbb4351d6c7861">But instance bootstrapping can still fail. What then?</h2>
 
-<p>This set-up still means that we depend on external services on boot. The User-Data script refreshes the APT cache, fetches files from S3, reads instance data from the EC2 API&hellip; all of these have been known to fail. Currently we run some Auto Scaling groups without attaching them to Elastic Load Balancers, so we have no health check that can fail a new instance that wasn&rsquo;t able to set up correctly.</p>
+<p>Even with custom AMIs we still depend on external services on boot. The User-Data script refreshes the APT cache, fetches files from S3, reads instance data from the EC2 API&hellip; all of these have been known to fail. Currently we run some Auto Scaling groups without attaching them to Elastic Load Balancers, so we have no health check that can fail a new instance that wasn&rsquo;t able to set up correctly.</p>
 
-<p>After a near-miss incident where we could have ended up swapping all the app servers in one group with new ones that weren&rsquo;t able to set up correctly (we having termination policies that favour terminating older instances) I looked at ways of getting warned when a new instance failed to set up. I was about to find and add error checking to every bit of code that might make requests when I recalled recently making use of the Bash <a href="http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_12_02.html"><code>trap</code> builtin</a>. On investigation it turned out that using <code>set -e</code>, which I knew to make a Bash script exit immediately on failure, can be caught by setting a <code>trap</code> - so this could be used to warn an operator:</p>
+<p>After a recent near-miss incident where we could have ended up swapping all the app servers in one group with new ones that weren&rsquo;t able to set up correctly (we use termination policies that favour terminating older instances) I looked at ways of getting warned when a new instance failed to set up. I was about to find and add error checking to every bit of code that might make requests when I recalled recently making use of the Bash <a href="http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_12_02.html"><code>trap</code> builtin</a>. On investigation it turned out that using <code>set -e</code>, which I knew to make a Bash script exit immediately on failure, can be caught by setting a <code>trap</code> - so this could be used to warn an operator:</p>
 
 <script src="https://gist.github.com/eb714b33549f002da05b.js"></script>
 
 
 <p><code>sns_region</code> and <code>sns_topic</code> are template variables, since this User-Data script is templated by <a href="https://www.terraform.io/">Terraform</a>, but that&rsquo;s a subject for another post. :-)</p>
 
-<p>And so - hopefully - disaster is averted!</p>
+<p>And so - hopefully - we get paged and total disaster is averted!</p>
 
                     </section>
                 </article>

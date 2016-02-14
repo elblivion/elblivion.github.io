@@ -20,9 +20,9 @@
 
 &lt;p&gt;One of my first tasks at my current employer was to automate bootstrapping of our AWS EC2 instances: to get them in a state where Chef could run on them without having to do any manual fiddling after launch.&lt;/p&gt;
 
-&lt;p&gt;To achieve this two things were needed, both requiring a lot of trial and error: an &lt;a href=&#34;http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html&#34;&gt;IAM instance profile&lt;/a&gt; to let EC2 instances access other AWS resources without having to distribute API keys, and a &lt;a href=&#34;http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts&#34;&gt;User-Data script&lt;/a&gt;, which is a shell script that is run automatically on boot to set up.&lt;/p&gt;
+&lt;p&gt;To achieve this two things were needed, both requiring a lot of trial and error: an &lt;a href=&#34;http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html&#34;&gt;IAM instance profile&lt;/a&gt; to let EC2 instances access other AWS resources without having to distribute API keys, and a &lt;a href=&#34;http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts&#34;&gt;User-Data script&lt;/a&gt;, which is a shell script that is run automatically on boot to set up. This is part of &lt;a href=&#34;http://cloudinit.readthedocs.org/en/latest/index.html&#34;&gt;Cloud-init&lt;/a&gt;, a standard for early initialisation of cloud instances.&lt;/p&gt;
 
-&lt;p&gt;Generally the less you do in these scripts the better, because they are a royal pain to debug. These days most of our set-up has been farmed out to &lt;a href=&#34;https://www.packer.io/&#34;&gt;Packer&lt;/a&gt;, which can build a custom AMI server image based on a stock Linux image on which it runs our set-up commands, install the versions of Ruby and Chef we want, and so on.&lt;/p&gt;
+&lt;p&gt;Generally the less you do in these scripts the better, because they are a royal pain to debug. (Hint: it involves creating and destroying a lot of test instances.) These days most of our set-up has been farmed out to &lt;a href=&#34;https://www.packer.io/&#34;&gt;Packer&lt;/a&gt;, which can build a custom AMI server image based on a stock Linux image on which it runs our set-up commands, install the versions of Ruby and Chef we want, and so on. This means the instances boot faster and that the User-Data script has less things to do.&lt;/p&gt;
 
 &lt;p&gt;Our custom AMIs include tools like the &lt;a href=&#34;https://stedolan.github.io/jq/&#34;&gt;jq&lt;/a&gt; command-line JSON processor, which we can use to process the output of &lt;a href=&#34;https://github.com/hungryblank/gofog&#34;&gt;goFog&lt;/a&gt;, Contentful CTO Paolo&amp;rsquo;s Go tool for basic interactions with the AWS API. Currently it supports reading information about EC2 instances, including their tags, which we use for environment discovery, and also publishing to SNS topics. Also being a Go program it&amp;rsquo;s distributed as a statically-linked binary which from a deployment and operations point of view is great.&lt;/p&gt;
 
@@ -33,18 +33,18 @@
 &lt;script src=&#34;https://gist.github.com/2b4cffc483285253197b.js&#34;&gt;&lt;/script&gt;
 
 
-&lt;h2 id=&#34;but-can-all-go-south-what-then:22895e17efbac64b92cbb4351d6c7861&#34;&gt;But can all go south. What then?&lt;/h2&gt;
+&lt;h2 id=&#34;but-instance-bootstrapping-can-still-fail-what-then:22895e17efbac64b92cbb4351d6c7861&#34;&gt;But instance bootstrapping can still fail. What then?&lt;/h2&gt;
 
-&lt;p&gt;This set-up still means that we depend on external services on boot. The User-Data script refreshes the APT cache, fetches files from S3, reads instance data from the EC2 API&amp;hellip; all of these have been known to fail. Currently we run some Auto Scaling groups without attaching them to Elastic Load Balancers, so we have no health check that can fail a new instance that wasn&amp;rsquo;t able to set up correctly.&lt;/p&gt;
+&lt;p&gt;Even with custom AMIs we still depend on external services on boot. The User-Data script refreshes the APT cache, fetches files from S3, reads instance data from the EC2 API&amp;hellip; all of these have been known to fail. Currently we run some Auto Scaling groups without attaching them to Elastic Load Balancers, so we have no health check that can fail a new instance that wasn&amp;rsquo;t able to set up correctly.&lt;/p&gt;
 
-&lt;p&gt;After a near-miss incident where we could have ended up swapping all the app servers in one group with new ones that weren&amp;rsquo;t able to set up correctly (we having termination policies that favour terminating older instances) I looked at ways of getting warned when a new instance failed to set up. I was about to find and add error checking to every bit of code that might make requests when I recalled recently making use of the Bash &lt;a href=&#34;http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_12_02.html&#34;&gt;&lt;code&gt;trap&lt;/code&gt; builtin&lt;/a&gt;. On investigation it turned out that using &lt;code&gt;set -e&lt;/code&gt;, which I knew to make a Bash script exit immediately on failure, can be caught by setting a &lt;code&gt;trap&lt;/code&gt; - so this could be used to warn an operator:&lt;/p&gt;
+&lt;p&gt;After a recent near-miss incident where we could have ended up swapping all the app servers in one group with new ones that weren&amp;rsquo;t able to set up correctly (we use termination policies that favour terminating older instances) I looked at ways of getting warned when a new instance failed to set up. I was about to find and add error checking to every bit of code that might make requests when I recalled recently making use of the Bash &lt;a href=&#34;http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_12_02.html&#34;&gt;&lt;code&gt;trap&lt;/code&gt; builtin&lt;/a&gt;. On investigation it turned out that using &lt;code&gt;set -e&lt;/code&gt;, which I knew to make a Bash script exit immediately on failure, can be caught by setting a &lt;code&gt;trap&lt;/code&gt; - so this could be used to warn an operator:&lt;/p&gt;
 
 &lt;script src=&#34;https://gist.github.com/eb714b33549f002da05b.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;&lt;code&gt;sns_region&lt;/code&gt; and &lt;code&gt;sns_topic&lt;/code&gt; are template variables, since this User-Data script is templated by &lt;a href=&#34;https://www.terraform.io/&#34;&gt;Terraform&lt;/a&gt;, but that&amp;rsquo;s a subject for another post. :-)&lt;/p&gt;
 
-&lt;p&gt;And so - hopefully - disaster is averted!&lt;/p&gt;
+&lt;p&gt;And so - hopefully - we get paged and total disaster is averted!&lt;/p&gt;
 </description>
     </item>
     
