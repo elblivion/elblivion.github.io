@@ -4,11 +4,13 @@ title = "About Me"
 
 +++
 
-I've been working in various roles in Internet-related companies since 1999.
+Hi, I'm Anthony. I've been working in various roles in Internet-related companies since 1999.
 
 Currently I am handling infrastructure and web operations at [Contentful](https://www.contentful.com).
 
 I also occasionally [tweet](https://twitter.com/elblivion).
+
+You can find my LinkedIn profile [here](https://de.linkedin.com/in/anthonystanton).
 
 <!--more-->
 
