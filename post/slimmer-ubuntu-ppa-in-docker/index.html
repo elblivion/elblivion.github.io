@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html xmlns="//www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
     <head>
@@ -7,13 +5,13 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
 
-        <title>Topics &middot; elblivion.github.io</title>
+        <title>Slimmer Ubuntu PPA in docker &middot; elblivion.github.io</title>
         <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600' type='text/css'>
         <link rel="stylesheet" href="http://localhost:1313//libraries/normalize.3.0.1.css" />
         <link rel="stylesheet" href="http://localhost:1313//css/liquorice.css" />
         <link rel="shortcut icon" href="http://localhost:1313/favicon.ico" />
         <link rel="apple-touch-icon-precomposed" href="http://localhost:1313/apple-touch-icon-144-precomposed.png" sizes="144x144" />
-        <link rel="alternate" href="http://localhost:1313/topics/index.xml" type="application/rss+xml" title="elblivion.github.io" />
+        <link rel="alternate" href="" type="application/rss+xml" title="elblivion.github.io" />
     </head>
     <body class="li-body">
 
@@ -58,15 +56,84 @@
 </header>
 
 
+
+
+
+
     <div class="container">
         <div class="row">
             <div class="sixteen columns">
-                <h1>Topics</h1>
-                <ul>
+                <article class="li-article">
+                    <header class="li-article-header">
+                        <h1 class="li-article-title">Slimmer Ubuntu PPA in docker</h1>
+                        <span class="li-article-taxonomies">
+                            
+
+                            
+                        </span>
+                        
+                        <time class="li-article-date">Sunday, May 29, 2016</time>
+                    </header>
+                    <section>
+                        <p>Many of my Docker images for testing software for production are based on Ubuntu, because that&rsquo;s  what we use in production and while I love Alpine Linux-based images it&rsquo;s  just too much overhead, not to mention self-defeating, to be hunting for equivalent packages all the time in a different distro and dealing with dynamic linking issues. Still, that image size tho!</p>
+
+<pre><code>ubuntu   14.04               b549a9959a66        7 weeks ago         188 MB
+alpine   3.3                 d7a513a663c1        8 weeks ago         4.798 MB
+</code></pre>
+
+<p>One annoying thing, though, is when I need a package from a PPA. Since it makes it self-contained in the Dockerfile we began using the <code>add-apt-repository</code>, but this includes Python and lots of dependencies, which is OK on a VM but makes the container extremely heavy.</p>
+
+<p>Recently while building <a href="http://openresty.org/">Openresty</a> in a container I simply wanted to add <a href="https://github.com/sstephenson/bats">Bats</a> to a testing container, and pulling this whole Python environment slowed the testing step down - so I used the following, which requires an extra file but is way more lightweight. You also need to manually specify the PGP key ID of the PPA, but I&rsquo;m not sure having to check that is a bad thing. :-)</p>
+
+<pre><code># my base container, based on ubuntu:14.04
+FROM openresty-trusty
+
+# Install bats
+ADD files/bats.list /etc/apt/sources.list.d
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5F28EA3F &amp;&amp; \
+  apt-get update &amp;&amp; \
+  apt-get install -y bats &amp;&amp; \
+  rm -rf /var/lib/apt/lists/*
+
+COPY . /app
+
+WORKDIR /app
+
+CMD [&quot;./scripts/test.sh&quot;]
+</code></pre>
+
+<pre><code>$ cat files/bats.list
+deb http://ppa.launchpad.net/duggan/bats/ubuntu trusty main
+deb-src http://ppa.launchpad.net/duggan/bats/ubuntu trusty main
+</code></pre>
+
+                    </section>
+                </article>
+            </div>
+        </div>
+
+        <div class="row li-author">
+    <div class="sixteen columns">
+      
+    </div>
+</div>
+
+
+        <div class="row li-pagination">
+            <div class="eight columns">
+                <div class="li-pagination-previous">
                     
+                        &nbsp;
                     
+                </div>
+            </div>
+            <div class="eight columns">
+                <div class="li-pagination-next">
                     
-                </ul>
+                        Older article<br />
+                        <a href="http://localhost:1313/post/docker-secrets-from-chef/"> Docker secrets from Chef</a>
+                    
+                </div>
             </div>
         </div>
     </div>

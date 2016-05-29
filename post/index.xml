@@ -2,20 +2,113 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on elblivion.github.io</title>
-    <link>http://elblivion.github.io/post/</link>
+    <link>http://localhost:1313/post/</link>
     <description>Recent content in Posts on elblivion.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016 Anthony Stanton, All rights reserved.</copyright>
-    <lastBuildDate>Sat, 13 Feb 2016 22:55:14 +0100</lastBuildDate>
-    <atom:link href="http://elblivion.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 29 May 2016 01:22:14 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Slimmer Ubuntu PPA in docker</title>
+      <link>http://localhost:1313/post/slimmer-ubuntu-ppa-in-docker/</link>
+      <pubDate>Sun, 29 May 2016 01:22:14 +0200</pubDate>
+      
+      <guid>http://localhost:1313/post/slimmer-ubuntu-ppa-in-docker/</guid>
+      <description>&lt;p&gt;Many of my Docker images for testing software for production are based on Ubuntu, because that&amp;rsquo;s  what we use in production and while I love Alpine Linux-based images it&amp;rsquo;s  just too much overhead, not to mention self-defeating, to be hunting for equivalent packages all the time in a different distro and dealing with dynamic linking issues. Still, that image size tho!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ubuntu   14.04               b549a9959a66        7 weeks ago         188 MB
+alpine   3.3                 d7a513a663c1        8 weeks ago         4.798 MB
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;One annoying thing, though, is when I need a package from a PPA. Since it makes it self-contained in the Dockerfile we began using the &lt;code&gt;add-apt-repository&lt;/code&gt;, but this includes Python and lots of dependencies, which is OK on a VM but makes the container extremely heavy.&lt;/p&gt;
+
+&lt;p&gt;Recently while building &lt;a href=&#34;http://openresty.org/&#34;&gt;Openresty&lt;/a&gt; in a container I simply wanted to add &lt;a href=&#34;https://github.com/sstephenson/bats&#34;&gt;Bats&lt;/a&gt; to a testing container, and pulling this whole Python environment slowed the testing step down - so I used the following, which requires an extra file but is way more lightweight. You also need to manually specify the PGP key ID of the PPA, but I&amp;rsquo;m not sure having to check that is a bad thing. :-)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# my base container, based on ubuntu:14.04
+FROM openresty-trusty
+
+# Install bats
+ADD files/bats.list /etc/apt/sources.list.d
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5F28EA3F &amp;amp;&amp;amp; \
+  apt-get update &amp;amp;&amp;amp; \
+  apt-get install -y bats &amp;amp;&amp;amp; \
+  rm -rf /var/lib/apt/lists/*
+
+COPY . /app
+
+WORKDIR /app
+
+CMD [&amp;quot;./scripts/test.sh&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat files/bats.list
+deb http://ppa.launchpad.net/duggan/bats/ubuntu trusty main
+deb-src http://ppa.launchpad.net/duggan/bats/ubuntu trusty main
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Docker secrets from Chef</title>
+      <link>http://localhost:1313/post/docker-secrets-from-chef/</link>
+      <pubDate>Sun, 29 May 2016 00:25:57 +0200</pubDate>
+      
+      <guid>http://localhost:1313/post/docker-secrets-from-chef/</guid>
+      <description>
+
+&lt;h2 id=&#34;title:1c8703bdbe07e79b0d854b7b39bce33f&#34;&gt;title&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;current platform based on Chef, heavily invested&lt;/li&gt;
+&lt;li&gt;Docker strengths&lt;/li&gt;
+&lt;li&gt;Transition issues / needs&lt;/li&gt;
+&lt;li&gt;Data bags&lt;/li&gt;
+&lt;li&gt;solution&lt;/li&gt;
+&lt;li&gt;conclusion? incomplete but a good step forward&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Terraform: Open Source Cloud Orchestration</title>
+      <link>http://localhost:1313/post/terraform/</link>
+      <pubDate>Sun, 28 Feb 2016 13:20:53 +0100</pubDate>
+      
+      <guid>http://localhost:1313/post/terraform/</guid>
+      <description>
+
+&lt;h2 id=&#34;what-is-terraform:c7e4204570a5d4c4ebde5f04b26ae8dc&#34;&gt;What is Terraform&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://terraform.io/&#34;&gt;Terraform&lt;/a&gt; is a tool for managing Infrastructure as Code, developed by Hashicorp, makers of other tools such as Vagrant and Packer.&lt;/p&gt;
+
+&lt;p&gt;Terraform allows you to model computing infrastructure in a configuration language which provides some useful primitives such as creating sets of identical resources, and interpolating various values into resource attributes.&lt;/p&gt;
+
+&lt;p&gt;Terraform is an &lt;a href=&#34;https://github.com/hashicorp/terraform&#34;&gt;open source project&lt;/a&gt; written in Go, under heavy development by Hashicorp and very open to contributions and bug fixes - &lt;a href=&#34;https://github.com/hashicorp/terraform/pulls?utf8=%E2%9C%93&amp;amp;q=is%3Apr+is%3Aclosed+author%3Aelblivion&#34;&gt;here&lt;/a&gt; are my own small contributions to the project, mostly bug fixes and small tweaks I have needed as I have converted my current employer&amp;rsquo;s infrastructure to be managed by this tool.&lt;/p&gt;
+
+&lt;p&gt;Before switching to Terraform I was writing an in-house custom tool that took YAML config files and generated &lt;a href=&#34;https://aws.amazon.com/cloudformation/&#34;&gt;AWS CloudFormation&lt;/a&gt; templates. These templates are then sent to AWS CloudFormation APIs, which attempt to apply them - creating new infrastructure or modifying existing one.&lt;/p&gt;
+
+&lt;p&gt;CloudFormation templates are written in JSON and quickly become huge - one of the reasons I wrote an in-house tool, and why tools such as &lt;a href=&#34;http://www.sparkleformation.io/&#34;&gt;SparkleFormation&lt;/a&gt; and &lt;a href=&#34;https://github.com/cloudtools/troposphere&#34;&gt;troposphere&lt;/a&gt; exist, providing DSLs to make template creation easier. In contrast, Terraform uses a more concise, powerful and flexible configuration language, HCL - although you can also write HCL-compatible JSON, which is the best bet for machine-generated Terraform config (&lt;a href=&#34;https://gist.github.com/elblivion/f52c38f720b8a200a04c&#34;&gt;here&amp;rsquo;s&lt;/a&gt; an example Ruby script that generates a Terraform config for looking up the current CoreOS stable channel AMI for any AWS region).&lt;/p&gt;
+
+&lt;h2 id=&#34;our-terraform-module-and-file-organisation:c7e4204570a5d4c4ebde5f04b26ae8dc&#34;&gt;Our Terraform module and file organisation&lt;/h2&gt;
+
+&lt;h2 id=&#34;gotchas:c7e4204570a5d4c4ebde5f04b26ae8dc&#34;&gt;Gotchas&lt;/h2&gt;
+
+&lt;h2 id=&#34;resources:c7e4204570a5d4c4ebde5f04b26ae8dc&#34;&gt;Resources&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Terraforming&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Adventures in User-Data</title>
-      <link>http://elblivion.github.io/post/user-data/</link>
+      <link>http://localhost:1313/post/user-data/</link>
       <pubDate>Sat, 13 Feb 2016 22:55:14 +0100</pubDate>
       
-      <guid>http://elblivion.github.io/post/user-data/</guid>
+      <guid>http://localhost:1313/post/user-data/</guid>
       <description>
 
 &lt;p&gt;One of my first tasks at my current employer was to automate bootstrapping of our AWS EC2 instances: to get them in a state where Chef could run on them without having to do any manual fiddling after launch.&lt;/p&gt;
@@ -30,7 +123,7 @@
 
 &lt;p&gt;With this in mind we need an IAM role policy sort of like:&lt;/p&gt;
 
-&lt;script src=&#34;https://gist.github.com/2b4cffc483285253197b.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://gist.github.com/elblivion.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;h2 id=&#34;but-instance-bootstrapping-can-still-fail-what-then:22895e17efbac64b92cbb4351d6c7861&#34;&gt;But instance bootstrapping can still fail. What then?&lt;/h2&gt;
@@ -39,12 +132,46 @@
 
 &lt;p&gt;After a recent near-miss incident where we could have ended up swapping all the app servers in one group with new ones that weren&amp;rsquo;t able to set up correctly (we use termination policies that favour terminating older instances) I looked at ways of getting warned when a new instance failed to set up. I was about to find and add error checking to every bit of code that might make requests when I recalled recently making use of the Bash &lt;a href=&#34;http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_12_02.html&#34;&gt;&lt;code&gt;trap&lt;/code&gt; builtin&lt;/a&gt;. On investigation it turned out that using &lt;code&gt;set -e&lt;/code&gt;, which I knew to make a Bash script exit immediately on failure, can be caught by setting a &lt;code&gt;trap&lt;/code&gt; - so this could be used to warn an operator:&lt;/p&gt;
 
-&lt;script src=&#34;https://gist.github.com/eb714b33549f002da05b.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://gist.github.com/elblivion.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;&lt;code&gt;sns_region&lt;/code&gt; and &lt;code&gt;sns_topic&lt;/code&gt; are template variables, since this User-Data script is templated by &lt;a href=&#34;https://www.terraform.io/&#34;&gt;Terraform&lt;/a&gt;, but that&amp;rsquo;s a subject for another post. :-)&lt;/p&gt;
 
 &lt;p&gt;And so - hopefully - we get paged and total disaster is averted!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>First Post</title>
+      <link>http://localhost:1313/post/first/</link>
+      <pubDate>Thu, 11 Feb 2016 15:36:24 +0100</pubDate>
+      
+      <guid>http://localhost:1313/post/first/</guid>
+      <description>&lt;p&gt;post text.&lt;/p&gt;
+
+&lt;p&gt;more text.&lt;/p&gt;
+
+&lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Hugo 0.15 will have 30%+ faster render times thanks to this commit &lt;a href=&#34;https://t.co/FfzhM8bNhT&#34;&gt;https://t.co/FfzhM8bNhT&lt;/a&gt;  &lt;a href=&#34;https://twitter.com/hashtag/gohugo?src=hash&#34;&gt;#gohugo&lt;/a&gt; &lt;a href=&#34;https://twitter.com/hashtag/golang?src=hash&#34;&gt;#golang&lt;/a&gt; &lt;a href=&#34;https://t.co/ITbMNU2BUf&#34;&gt;https://t.co/ITbMNU2BUf&lt;/a&gt;&lt;/p&gt;&amp;mdash; Steve Francia (@spf13) &lt;a href=&#34;https://twitter.com/spf13/status/666616452582129664&#34;&gt;November 17, 2015&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;script src=&#34;https://gist.github.com/d5024c2dacf77b8a09c6.js&#34;&gt;&lt;/script&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Sample image.&lt;/p&gt;
+
+&lt;p&gt;
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://localhost:1313/images/doge.jpg&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;very image wow&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+&lt;/p&gt;
 </description>
     </item>
     
