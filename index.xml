@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>elblivion.github.io</title>
-    <link>http://elblivion.github.io/</link>
+    <link>https://elblivion.github.io/</link>
     <description>Recent content on elblivion.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016 Anthony Stanton, All rights reserved.</copyright>
     <lastBuildDate>Sun, 29 May 2016 01:22:14 +0200</lastBuildDate>
-    <atom:link href="http://elblivion.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://elblivion.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Slimmer Ubuntu PPA in docker</title>
-      <link>http://elblivion.github.io/post/slimmer-ubuntu-ppa-in-docker/</link>
+      <link>https://elblivion.github.io/post/slimmer-ubuntu-ppa-in-docker/</link>
       <pubDate>Sun, 29 May 2016 01:22:14 +0200</pubDate>
       
-      <guid>http://elblivion.github.io/post/slimmer-ubuntu-ppa-in-docker/</guid>
+      <guid>https://elblivion.github.io/post/slimmer-ubuntu-ppa-in-docker/</guid>
       <description>&lt;p&gt;Many of my Docker images for testing software for production are based on Ubuntu, because that&amp;rsquo;s  what we use in production and while I love Alpine Linux-based images it&amp;rsquo;s  just too much overhead, not to mention self-defeating, to be hunting for equivalent packages all the time in a different distro and dealing with dynamic linking issues. Still, that image size tho!&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ubuntu   14.04               b549a9959a66        7 weeks ago         188 MB
@@ -52,10 +52,10 @@ deb-src http://ppa.launchpad.net/duggan/bats/ubuntu trusty main
     
     <item>
       <title>Adventures in User-Data</title>
-      <link>http://elblivion.github.io/post/user-data/</link>
+      <link>https://elblivion.github.io/post/user-data/</link>
       <pubDate>Sat, 13 Feb 2016 22:55:14 +0100</pubDate>
       
-      <guid>http://elblivion.github.io/post/user-data/</guid>
+      <guid>https://elblivion.github.io/post/user-data/</guid>
       <description>
 
 &lt;p&gt;One of my first tasks at my current employer was to automate bootstrapping of our AWS EC2 instances: to get them in a state where Chef could run on them without having to do any manual fiddling after launch.&lt;/p&gt;
@@ -90,10 +90,10 @@ deb-src http://ppa.launchpad.net/duggan/bats/ubuntu trusty main
     
     <item>
       <title>About Me</title>
-      <link>http://elblivion.github.io/about/</link>
+      <link>https://elblivion.github.io/about/</link>
       <pubDate>Thu, 11 Feb 2016 15:25:01 +0100</pubDate>
       
-      <guid>http://elblivion.github.io/about/</guid>
+      <guid>https://elblivion.github.io/about/</guid>
       <description>&lt;p&gt;Hi, I&amp;rsquo;m Anthony. I&amp;rsquo;ve been working in various roles in Internet-related companies since 1999.&lt;/p&gt;
 
 &lt;p&gt;Currently I am handling infrastructure and web operations at &lt;a href=&#34;https://www.contentful.com&#34;&gt;Contentful&lt;/a&gt;.&lt;/p&gt;
