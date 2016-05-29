@@ -18,7 +18,7 @@ All the files we need for bootstrapping Chef, and our own packaged apps, are sto
 
 With this in mind we need an IAM role policy sort of like:
 
-{{% gist 2b4cffc483285253197b %}}
+{{% gist elblivion 2b4cffc483285253197b %}}
 
 ## But instance bootstrapping can still fail. What then?
 
@@ -26,7 +26,7 @@ Even with custom AMIs we still depend on external services on boot. The User-Dat
 
 After a recent near-miss incident where we could have ended up swapping all the app servers in one group with new ones that weren't able to set up correctly (we use termination policies that favour terminating older instances) I looked at ways of getting warned when a new instance failed to set up. I was about to find and add error checking to every bit of code that might make requests when I recalled recently making use of the Bash [`trap` builtin](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_12_02.html). On investigation it turned out that using `set -e`, which I knew to make a Bash script exit immediately on failure, can be caught by setting a `trap` - so this could be used to warn an operator:
 
-{{% gist eb714b33549f002da05b %}}
+{{% gist elblivion eb714b33549f002da05b %}}
 
 `sns_region` and `sns_topic` are template variables, since this User-Data script is templated by [Terraform](https://www.terraform.io/), but that's a subject for another post. :-)
 
