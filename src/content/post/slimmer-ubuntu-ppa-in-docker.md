@@ -40,3 +40,5 @@ $ cat files/bats.list
 deb http://ppa.launchpad.net/duggan/bats/ubuntu trusty main
 deb-src http://ppa.launchpad.net/duggan/bats/ubuntu trusty main
 ```
+
+The difference in image size is "only" 40 MB, but the build time is 6x faster (30s vs 3 mins).
