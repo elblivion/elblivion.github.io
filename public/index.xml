@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My New Hugo Site</title>
+    <link>https://example.org/</link>
+    <description>Recent content on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 29 May 2016 01:22:14 +0200</lastBuildDate>
+    <atom:link href="https://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Slimmer Ubuntu PPA in docker</title>
+      <link>https://example.org/post/slimmer-ubuntu-ppa-in-docker/</link>
+      <pubDate>Sun, 29 May 2016 01:22:14 +0200</pubDate>
+      <guid>https://example.org/post/slimmer-ubuntu-ppa-in-docker/</guid>
+      <description>&lt;p&gt;Many of my Docker images for testing software for production are based on Ubuntu, because that&amp;rsquo;s  what we use in production and while I love Alpine Linux-based images it&amp;rsquo;s  just too much overhead, not to mention self-defeating, to be hunting for equivalent packages all the time in a different distro and dealing with dynamic linking issues. Still, that image size tho!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Adventures in User-Data</title>
+      <link>https://example.org/post/user-data/</link>
+      <pubDate>Sat, 13 Feb 2016 22:55:14 +0100</pubDate>
+      <guid>https://example.org/post/user-data/</guid>
+      <description>&lt;p&gt;One of my first tasks at my current employer was to automate bootstrapping of our AWS EC2 instances: to get them in a state where Chef could run on them without having to do any manual fiddling after launch.&lt;/p&gt;
+&lt;p&gt;To achieve this two things were needed, both requiring a lot of trial and error: an &lt;a href=&#34;http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html&#34;&gt;IAM instance profile&lt;/a&gt; to let EC2 instances access other AWS resources without having to distribute API keys, and a &lt;a href=&#34;http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts&#34;&gt;User-Data script&lt;/a&gt;, which is a shell script that is run automatically on boot to set up. This is part of &lt;a href=&#34;http://cloudinit.readthedocs.org/en/latest/index.html&#34;&gt;Cloud-init&lt;/a&gt;, a standard for early initialisation of cloud instances.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>About Me</title>
+      <link>https://example.org/about/</link>
+      <pubDate>Thu, 11 Feb 2016 15:25:01 +0100</pubDate>
+      <guid>https://example.org/about/</guid>
+      <description>&lt;p&gt;Hi, I&amp;rsquo;m Anthony. I&amp;rsquo;ve been working in various roles in Internet-related companies since 1999.&lt;/p&gt;
+&lt;p&gt;Currently I am handling infrastructure and web operations at &lt;a href=&#34;https://www.contentful.com&#34;&gt;Contentful&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I also occasionally &lt;a href=&#34;https://twitter.com/elblivion&#34;&gt;tweet&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You can find my LinkedIn profile &lt;a href=&#34;https://de.linkedin.com/in/anthonystanton&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
