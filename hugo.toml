@@ -1,4 +1,4 @@
-baseURL = 'https://elblivion.github.io/'
+baseURL = 'https://blog.elblivion.net/'
 languageCode = 'en-gb'
-title = 'elblivion.github.io'
+title = 'Old Man Yells at Cloud'
 theme = 'hugo-papermod'
