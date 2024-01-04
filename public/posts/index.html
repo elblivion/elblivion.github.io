@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Categories | Old Man Yells at Cloud</title>
+<title>Posts | Old Man Yells at Cloud</title>
 <meta name="keywords" content="">
-<meta name="description" content="">
+<meta name="description" content="Posts - Old Man Yells at Cloud">
 <meta name="author" content="">
-<link rel="canonical" href="https://blog.elblivion.net/categories/">
+<link rel="canonical" href="https://blog.elblivion.net/posts/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.2d50b1531bd1b3146d65c5543bd298f7f982786aadee4c223cb3a1cb51906106.css" integrity="sha256-LVCxUxvRsxRtZcVUO9KY9/mCeGqt7kwiPLOhy1GQYQY=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://blog.elblivion.net/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://blog.elblivion.net/favicon-16x16.png">
@@ -18,7 +18,7 @@
 <link rel="mask-icon" href="https://blog.elblivion.net/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://blog.elblivion.net/categories/index.xml">
+<link rel="alternate" type="application/rss+xml" href="https://blog.elblivion.net/posts/index.xml">
 <noscript>
     <style>
         #theme-toggle,
@@ -55,15 +55,30 @@
         }
 
     </style>
-</noscript><meta property="og:title" content="Categories" />
+</noscript><meta property="og:title" content="Posts" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://blog.elblivion.net/categories/" />
+<meta property="og:url" content="https://blog.elblivion.net/posts/" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Categories"/>
+<meta name="twitter:title" content="Posts"/>
 <meta name="twitter:description" content=""/>
 
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://blog.elblivion.net/posts/"
+    }
+  ]
+}
+</script>
 </head>
 
 <body class="list" id="top">
@@ -119,13 +134,52 @@
         </ul>
     </nav>
 </header>
-<main class="main">
+<main class="main"> 
 <header class="page-header">
-    <h1>Categories</h1>
+  <h1>
+    Posts
+  </h1>
 </header>
 
-<ul class="terms-tags">
-</ul>
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Meta Blog
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>In this meta-post, I describe how I returned to my abandoned blog and how I set it up.
+After many years without posting I decided to revive and revamp this blog. A big factor in this was the trouble a friend of mine had with their LinkedIn account; it made me realise that large social media companies essentially own and control the content you put on them, so “LinkedIn Posts” or Medium or what have you are no replacement for having control over what you write....</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-01-04 17:36:37 +0100 CET'>January 4, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to Meta Blog" href="https://blog.elblivion.net/posts/2024/01/04/meta-blog/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Slimmer Ubuntu PPA in docker
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Many of my Docker images for testing software for production are based on Ubuntu, because that’s what we use in production and while I love Alpine Linux-based images it’s just too much overhead, not to mention self-defeating, to be hunting for equivalent packages all the time in a different distro and dealing with dynamic linking issues. Still, that image size tho!
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2016-05-29 01:22:14 +0200 CEST'>May 29, 2016</span></footer>
+  <a class="entry-link" aria-label="post link to Slimmer Ubuntu PPA in docker" href="https://blog.elblivion.net/posts/slimmer-ubuntu-ppa-in-docker/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Adventures in User-Data
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>One of my first tasks at my current employer was to automate bootstrapping of our AWS EC2 instances: to get them in a state where Chef could run on them without having to do any manual fiddling after launch.
+To achieve this two things were needed, both requiring a lot of trial and error: an IAM instance profile to let EC2 instances access other AWS resources without having to distribute API keys, and a User-Data script, which is a shell script that is run automatically on boot to set up. This is part of Cloud-init, a standard for early initialisation of cloud instances.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2016-02-13 22:55:14 +0100 CET'>February 13, 2016</span></footer>
+  <a class="entry-link" aria-label="post link to Adventures in User-Data" href="https://blog.elblivion.net/posts/user-data/"></a>
+</article>
     </main>
     
 <footer class="footer">

@@ -2,23 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://elblivion.github.io/</loc>
+    <loc>https://blog.elblivion.net/posts/2024/01/04/meta-blog/</loc>
+    <lastmod>2024-01-04T17:36:37+01:00</lastmod>
+  </url><url>
+    <loc>https://blog.elblivion.net/</loc>
+    <lastmod>2024-01-04T17:36:37+01:00</lastmod>
+  </url><url>
+    <loc>https://blog.elblivion.net/posts/</loc>
+    <lastmod>2024-01-04T17:36:37+01:00</lastmod>
+  </url><url>
+    <loc>https://blog.elblivion.net/posts/slimmer-ubuntu-ppa-in-docker/</loc>
     <lastmod>2016-05-29T01:22:14+02:00</lastmod>
   </url><url>
-    <loc>https://elblivion.github.io/post/</loc>
-    <lastmod>2016-05-29T01:22:14+02:00</lastmod>
-  </url><url>
-    <loc>https://elblivion.github.io/post/slimmer-ubuntu-ppa-in-docker/</loc>
-    <lastmod>2016-05-29T01:22:14+02:00</lastmod>
-  </url><url>
-    <loc>https://elblivion.github.io/post/user-data/</loc>
+    <loc>https://blog.elblivion.net/posts/user-data/</loc>
     <lastmod>2016-02-13T22:55:14+01:00</lastmod>
   </url><url>
-    <loc>https://elblivion.github.io/about/</loc>
+    <loc>https://blog.elblivion.net/about/</loc>
     <lastmod>2016-02-11T15:25:01+01:00</lastmod>
   </url><url>
-    <loc>https://elblivion.github.io/categories/</loc>
+    <loc>https://blog.elblivion.net/archives/</loc>
   </url><url>
-    <loc>https://elblivion.github.io/tags/</loc>
+    <loc>https://blog.elblivion.net/categories/</loc>
+  </url><url>
+    <loc>https://blog.elblivion.net/tags/</loc>
   </url>
 </urlset>

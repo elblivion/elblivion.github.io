@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Meta Blog | Old Man Yells at Cloud</title>
+<meta name="keywords" content="">
+<meta name="description" content="In this meta-post, I describe how I returned to my abandoned blog and how I set it up.
+After many years without posting I decided to revive and revamp this blog. A big factor in this was the trouble a friend of mine had with their LinkedIn account; it made me realise that large social media companies essentially own and control the content you put on them, so &ldquo;LinkedIn Posts&rdquo; or Medium or what have you are no replacement for having control over what you write.">
+<meta name="author" content="">
+<link rel="canonical" href="https://blog.elblivion.net/posts/2024/01/04/meta-blog/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2d50b1531bd1b3146d65c5543bd298f7f982786aadee4c223cb3a1cb51906106.css" integrity="sha256-LVCxUxvRsxRtZcVUO9KY9/mCeGqt7kwiPLOhy1GQYQY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.elblivion.net/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.elblivion.net/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.elblivion.net/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.elblivion.net/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.elblivion.net/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Meta Blog" />
+<meta property="og:description" content="In this meta-post, I describe how I returned to my abandoned blog and how I set it up.
+After many years without posting I decided to revive and revamp this blog. A big factor in this was the trouble a friend of mine had with their LinkedIn account; it made me realise that large social media companies essentially own and control the content you put on them, so &ldquo;LinkedIn Posts&rdquo; or Medium or what have you are no replacement for having control over what you write." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.elblivion.net/posts/2024/01/04/meta-blog/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-01-04T17:36:37+01:00" />
+<meta property="article:modified_time" content="2024-01-04T17:36:37+01:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Meta Blog"/>
+<meta name="twitter:description" content="In this meta-post, I describe how I returned to my abandoned blog and how I set it up.
+After many years without posting I decided to revive and revamp this blog. A big factor in this was the trouble a friend of mine had with their LinkedIn account; it made me realise that large social media companies essentially own and control the content you put on them, so &ldquo;LinkedIn Posts&rdquo; or Medium or what have you are no replacement for having control over what you write."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://blog.elblivion.net/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Meta Blog",
+      "item": "https://blog.elblivion.net/posts/2024/01/04/meta-blog/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Meta Blog",
+  "name": "Meta Blog",
+  "description": "In this meta-post, I describe how I returned to my abandoned blog and how I set it up.\nAfter many years without posting I decided to revive and revamp this blog. A big factor in this was the trouble a friend of mine had with their LinkedIn account; it made me realise that large social media companies essentially own and control the content you put on them, so \u0026ldquo;LinkedIn Posts\u0026rdquo; or Medium or what have you are no replacement for having control over what you write.",
+  "keywords": [
+    
+  ],
+  "articleBody": "In this meta-post, I describe how I returned to my abandoned blog and how I set it up.\nAfter many years without posting I decided to revive and revamp this blog. A big factor in this was the trouble a friend of mine had with their LinkedIn account; it made me realise that large social media companies essentially own and control the content you put on them, so “LinkedIn Posts” or Medium or what have you are no replacement for having control over what you write.\nAlso I wanted to get the feel for the complexity required to run a site like this in 2024, vs the ease of Linkedin or Medium, which I have not used but I image provide a reasonable in-browser editing and management experience. The TL;DR for that is that, apart from the usual issues around managing DNS and SSL, this is still something that seems challenging for non-computer people, but perhaps that’s also related to the flexibility of the static site generator I’m using.\nWhere to host 🌍️ Initially I considered hosting on Vercel, since I have been hearing a lot about that. But a static site isn’t really the right use case, so I decided to stick with Hugo + Github Pages and simply:\nAdd a custom domain (in case I ever want to move the site) Add SSL (because, you know, it’s 2024) Add an automated workflow for publishing on commit (see the previous line) Upgrade Hugo, tweak the theme and and structure a bit Custom domain 💅️ Actually picking one was haaaarrrrd. (Naming things usually are). I haven’t run a website for ages, there are gazillions of TLDs now that I’d never even considered. In the end I chose a very old skool thing (.net) and that will have to do for now. Since I intend to own the domains this may run on, I can always set up redirects later.\nAs to the registrar: I definitely didn’t want to use GoDaddy, and Amazon Route53 (the other registrar I have used at work) seemed overkill if I wasn’t going to deploy on AWS, plus it has a lot less TLDs on offer. After reading some comparisons, especially this one on the Pragmatic Programmer blog, I picked Porkbun because of good reviews and cute pigs.\nSSL 🔒️ This turned out to be very simple nowadays on Github Pages, even with custom domains; you just click a checkbox and eventually a Let’s Encrypt certificate is deployed. I did enable this before the domain was live (for the default github.io subdomain) and ended up having to disable and re-enable custom domain until eventually the DNS \u0026 certificate validation dance worked.\nAutomated workflow 🏗️ This was pretty simple; I followed the instructions on the Hugo website. No messing around with credentials or anything, apart from changing the values indicated (e.g. branch name) it just worked once the custom domain was set up (that is used as an input for the workflow steps).\nMy previous blog was on the master branch; I deployed this new config on main and later made it the default. This also helped when updating the structure of the site, see below.\nHugo 📝️ I probably picked Hugo simply because it was written in Go. Not that I thought I’d ever contribute. My existing site - untouched for over 7 years - was made with whatever was the old version of Hugo that existed back then. Since I decided to use a new default branch, I chose to simply create a new site and copy two extremely old and pointless posts over. I never customised too many things or created much content anyway.\nNow in 2024 adding a theme was pretty straightforward, and the one I picked (mainly for minimalism and readability) was well documented enough that configuring a couple of supported features easily, such as configuring an “Archive” page. I hadn’t realised the first time around how key the “front matter” of Hugo content source files is, e.g. configuring which “menu” a page will appear on.\nI suppose (as usual) I should read the docs again, and understand more Hugo concepts. In the end it seems very flexible, and has enough of a community around it that you can search for answers to questions like “how to have posts with the date in the URL”.\nBut all in all to use a generator like Hugo effectively you still need to know your way around Git, the filesystem, and think like a programmer, much like Github Pages.\nSo, now ready to write something, hopefully in less than 7 years. 😬️\n",
+  "wordCount" : "770",
+  "inLanguage": "en",
+  "datePublished": "2024-01-04T17:36:37+01:00",
+  "dateModified": "2024-01-04T17:36:37+01:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.elblivion.net/posts/2024/01/04/meta-blog/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Old Man Yells at Cloud",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.elblivion.net/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.elblivion.net/" accesskey="h" title="Old Man Yells at Cloud (Alt + H)">Old Man Yells at Cloud</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://blog.elblivion.net/about/" title="About Me">
+                    <span>About Me</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.elblivion.net/archives/" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Meta Blog
+    </h1>
+    <div class="post-meta"><span title='2024-01-04 17:36:37 +0100 CET'>January 4, 2024</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p><em>In this meta-post, I describe how I returned to my abandoned blog and how I set it up.</em></p>
+<p>After many years without posting I decided to revive and revamp this blog. A big factor in this was the trouble
+a friend of mine had with their LinkedIn account; it made me realise that large social media companies
+essentially own and control the content you put on them, so &ldquo;LinkedIn Posts&rdquo; or Medium or what have you are
+no replacement for having control over what you write.</p>
+<p>Also I wanted to get the feel for the complexity required to run a site like this in 2024, vs the ease of
+Linkedin or Medium, which I have not used but I image provide a reasonable in-browser editing and management
+experience. The TL;DR for that is that, apart from the usual issues around managing DNS and SSL, this is
+still something that seems challenging for non-computer people, but perhaps that&rsquo;s also related to the
+flexibility of the static site generator I&rsquo;m using.</p>
+<h2 id="where-to-host-">Where to host 🌍️<a hidden class="anchor" aria-hidden="true" href="#where-to-host-">#</a></h2>
+<p>Initially I considered hosting on Vercel, since I have been hearing a lot about that. But a static site isn&rsquo;t
+really the right use case, so I decided to stick with Hugo + Github Pages and simply:</p>
+<ol>
+<li>Add a custom domain (in case I ever want to move the site)</li>
+<li>Add SSL (because, you know, it&rsquo;s 2024)</li>
+<li>Add an automated workflow for publishing on commit (see the previous line)</li>
+<li>Upgrade Hugo, tweak the theme and and structure a bit</li>
+</ol>
+<h2 id="custom-domain-">Custom domain 💅️<a hidden class="anchor" aria-hidden="true" href="#custom-domain-">#</a></h2>
+<p>Actually picking one was haaaarrrrd. (Naming things usually are). I
+haven&rsquo;t run a website for ages, there are gazillions of TLDs now that I&rsquo;d
+never even considered. In the end I chose a very old skool thing (<code>&lt;my old IRC nick&gt;.net</code>) and that will have to do for now. Since I intend to
+own the domains this may run on, I can always set up redirects later.</p>
+<p>As to the registrar: I definitely didn&rsquo;t want to use GoDaddy, and Amazon
+Route53 (the other registrar I have used at work) seemed overkill if I
+wasn&rsquo;t going to deploy on AWS, plus it has a lot less TLDs on offer. After
+reading some comparisons, especially <a href="https://blog.pragmaticengineer.com/domain-registrars-which-developers-recommend/">this one on the Pragmatic Programmer
+blog</a>,
+I picked <a href="https://porkbun.com/">Porkbun</a> because of good reviews and
+cute pigs.</p>
+<h2 id="ssl-">SSL 🔒️<a hidden class="anchor" aria-hidden="true" href="#ssl-">#</a></h2>
+<p>This turned out to be very simple nowadays on Github Pages, even with custom domains; you just click a checkbox
+and eventually a Let&rsquo;s Encrypt certificate is deployed. I did enable this before the domain was live (for the
+default github.io subdomain) and ended up having to disable and re-enable custom domain until eventually the
+DNS &amp; certificate validation dance worked.</p>
+<h2 id="automated-workflow-">Automated workflow 🏗️<a hidden class="anchor" aria-hidden="true" href="#automated-workflow-">#</a></h2>
+<p>This was pretty simple; I followed the <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">instructions on the Hugo website</a>.
+No messing around with credentials or anything, apart from changing the values indicated (e.g. branch name) it just worked once
+the custom domain was set up (that is used as an input for the workflow steps).</p>
+<p>My previous blog was on the <code>master</code> branch; I deployed this new config on <code>main</code> and later made it the default. This also
+helped when updating the structure of the site, see below.</p>
+<h2 id="hugo-">Hugo 📝️<a hidden class="anchor" aria-hidden="true" href="#hugo-">#</a></h2>
+<p>I probably picked <a href="https://gohugo.io/">Hugo</a> simply because it was written in Go. Not that I thought I&rsquo;d ever
+contribute. My existing site - untouched for over 7 years - was made with whatever was the old version of Hugo that
+existed back then. Since I decided to use a new default branch, I chose to simply create a new site and copy two
+extremely old and pointless posts over. I never customised too many things or created much content anyway.</p>
+<p>Now in 2024 adding a theme was pretty straightforward, and the one I picked (mainly for minimalism and readability) was
+well documented enough that configuring a couple of supported features easily, such as configuring an &ldquo;Archive&rdquo; page.
+I hadn&rsquo;t realised the first time around how key the &ldquo;front matter&rdquo; of Hugo content source files is, e.g. configuring
+which &ldquo;menu&rdquo; a page will appear on.</p>
+<p>I suppose (as usual) I should read the docs again, and understand more Hugo concepts. In the end it seems very flexible,
+and has enough of a community around it that you can search for answers to questions like &ldquo;<a href="https://discourse.gohugo.io/t/dates-in-post-filenames/26219">how to have posts with the
+date in the URL</a>&rdquo;.</p>
+<p>But all in all to use a generator like Hugo effectively you still need to know your way around Git, the filesystem, and
+think like a programmer, much like Github Pages.</p>
+<p>So, now ready to write something, hopefully in less than 7 years. 😬️</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="https://blog.elblivion.net/">Old Man Yells at Cloud</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
